@@ -33,7 +33,7 @@ try
     %% Init the experiment
     [cfg] = initPTB(cfg);
 
-    cfg.dot.matrixWidth = cfg.screen.winHeight;
+    cfg.dot.matrixWidth = cfg.screen.winWidth;
 
     % Convert some values from degrees to pixels
     cfg.dot = degToPix('size', cfg.dot, cfg);
@@ -63,6 +63,7 @@ try
 
     disp(cfg);
 
+    % Show experiment instruction
     standByScreen(cfg);
 
     % prepare the KbQueue to collect responses
@@ -76,7 +77,7 @@ try
 
     getResponse('start', cfg.keyboard.responseBox);
 
-    WaitSecs(cfg.onsetDelay);
+    waitFor(cfg, cfg.timing.onsetDelay);
 
     %% For Each Block
 
@@ -98,6 +99,15 @@ try
             thisEvent.speed = cfg.design.speeds(iBlock, iEvent);
             thisEvent.target = cfg.design.fixationTargets(iBlock, iEvent);
 
+            % we wait for a trigger every 2 events
+            if cfg.pacedByTriggers.do && mod(iEvent, 2) == 1
+                waitForTrigger( ...
+                    cfg, ...
+                    cfg.keyboard.responseBox, ...
+                    cfg.pacedByTriggers.quietMode, ...
+                    cfg.pacedByTriggers.nbTriggers);
+            end
+
             % play the dots and collect onset and duraton of the event
             [onset, duration] = doDotMo(cfg, thisEvent);
 
@@ -106,6 +116,13 @@ try
             thisEvent.keyName = 'n/a';
             thisEvent.duration = duration;
             thisEvent.onset = onset - cfg.experimentStart;
+
+            % % this value should be in degrees / second in the log file
+            % % highlights that the way speed is passed around could be
+            % % simplified.
+            % %
+            % thisEvent.speed
+            % %
 
             % Save the events txt logfile
             % we save event by event so we clear this variable every loop
@@ -124,14 +141,13 @@ try
             triggerString = ['trigger_' cfg.design.blockNames{iBlock}];
             saveResponsesAndTriggers(responseEvents, cfg, logFile, triggerString);
 
-            % wait for the inter-stimulus interval
-            WaitSecs(cfg.ISI);
+            waitFor(cfg, cfg.timing.ISI);
 
         end
 
         eyeTracker('StopRecordings', cfg);
 
-        WaitSecs(cfg.IBI);
+        waitFor(cfg, cfg.timing.IBI);
 
         % trigger monitoring
         triggerEvents = getResponse('check', cfg.keyboard.responseBox, cfg, ...
@@ -143,7 +159,7 @@ try
     end
 
     % End of the run for the BOLD to go down
-    WaitSecs(cfg.endDelay);
+    waitFor(cfg, cfg.timing.endDelay);
 
     cfg = getExperimentEnd(cfg);
 
