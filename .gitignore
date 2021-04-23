@@ -9,3 +9,5 @@
 */*/*/logfiles/*
 *.tsv
 *.mat
+
+output/
