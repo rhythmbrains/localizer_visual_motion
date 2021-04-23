@@ -66,7 +66,7 @@ function [cfg] = setParameters()
     % IBI
     % block length = (cfg.eventDuration + cfg.ISI) * cfg.design.nbEventsPerBlock
 
-    cfg.timing.eventDuration = 0.79; % second
+    cfg.timing.eventDuration = 0.59; % second
 
     % Time between blocs in secs
     cfg.timing.IBI = 8;
