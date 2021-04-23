@@ -14,16 +14,16 @@ function [cfg] = setParameters()
 
     %% Debug mode settings
 
-    cfg.debug.do = false; % To test the script out of the scanner, skip PTB sync
-    cfg.debug.smallWin = false; % To test on a part of the screen, change to 1
+    cfg.debug.do = true; % To test the script out of the scanner, skip PTB sync
+    cfg.debug.smallWin = true; % To test on a part of the screen, change to 1
     cfg.debug.transpWin = false; % To test with trasparent full size screen
 
-    cfg.verbose = false;
+    cfg.verbose = true;
 
     %% Engine parameters
 
     cfg.testingDevice = 'mri';
-    cfg.eyeTracker.do = true;
+    cfg.eyeTracker.do = false;
     cfg.audio.do = false;
 
     cfg = setMonitor(cfg);
@@ -34,7 +34,7 @@ function [cfg] = setParameters()
     % MRI settings
     cfg = setMRI(cfg);
 
-    cfg.pacedByTriggers.do = true;
+    cfg.pacedByTriggers.do = false;
 
     %% Experiment Design
 
@@ -129,10 +129,7 @@ end
 
 function cfg = setKeyboards(cfg)
     cfg.keyboard.escapeKey = 'ESCAPE';
-    cfg.keyboard.responseKey = { ...
-        'r', 'g', 'y', 'b', ...
-        'd', 'n', 'z', 'e', ...
-        't'}; % dnze rgyb
+    cfg.keyboard.responseKey = {'d', 'a', 'c', 'b'}; % dnze rgyb
     cfg.keyboard.keyboard = [];
     cfg.keyboard.responseBox = [];
 
@@ -144,10 +141,10 @@ end
 
 function cfg = setMRI(cfg)
     % letter sent by the trigger to sync stimulation and volume acquisition
-    cfg.mri.triggerKey = 't';
+    cfg.mri.triggerKey = 's';
     cfg.mri.triggerNb = 5;
 
-    cfg.mri.repetitionTime = 1.8;
+    cfg.mri.repetitionTime = 2.5;
 
     cfg.bids.MRI.Instructions = 'Detect the RED fixation cross';
     cfg.bids.MRI.TaskDescription = [];
