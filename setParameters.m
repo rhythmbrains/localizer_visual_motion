@@ -52,10 +52,10 @@ function [cfg] = setParameters()
     % cfg.design.localizer = 'MT_MST';
 
     cfg.design.motionType = 'translation';
-    cfg.design.motionDirections = [0 0 180 180];
+    cfg.design.motionDirections = [0 90 180 270];
     cfg.design.names = {'static'; 'motion'};
 
-    cfg.design.nbRepetitions = 12;
+    cfg.design.nbRepetitions = 6;
     cfg.design.nbEventsPerBlock = 12; % DO NOT CHANGE
 
     %% Timing
@@ -69,13 +69,13 @@ function [cfg] = setParameters()
     cfg.timing.eventDuration = 0.79; % second
 
     % Time between blocs in secs
-    cfg.timing.IBI = 0;
+    cfg.timing.IBI = 8;
     % Time between events in secs
-    cfg.timing.ISI = 0;
+    cfg.timing.ISI = 0.1;
     % Number of seconds before the motion stimuli are presented
-    cfg.timing.onsetDelay = 0;
+    cfg.timing.onsetDelay = 5.25;
     % Number of seconds after the end all the stimuli before ending the run
-    cfg.timing.endDelay = 3.6;
+    cfg.timing.endDelay = 14;
 
     % reexpress those in terms of repetition time
     if cfg.pacedByTriggers.do
@@ -166,12 +166,22 @@ end
 function cfg = setMRI(cfg)
     % letter sent by the trigger to sync stimulation and volume acquisition
     cfg.mri.triggerKey = 's';
-    cfg.mri.triggerNb = 5;
+    cfg.mri.triggerNb = 1;
 
-    cfg.mri.repetitionTime = 2.5;
+    cfg.mri.repetitionTime = 1.75;
 
     cfg.bids.MRI.Instructions = 'Detect the RED fixation cross';
     cfg.bids.MRI.TaskDescription = [];
+    cfg.bids.mri.SliceTiming = [0, 0.9051, 0.0603, 0.9655, 0.1206, 1.0258, 0.181, ...
+                              1.0862, 0.2413, 1.1465, 0.3017, 1.2069, 0.362, ...
+                              1.2672, 0.4224, 1.3275, 0.4827, 1.3879, 0.5431, ...
+                              1.4482, 0.6034, 1.5086, 0.6638, 1.5689, 0.7241, ...
+                              1.6293, 0.7844, 1.6896, 0.8448, 0, 0.9051, 0.0603, ...
+                              0.9655, 0.1206, 1.0258, 0.181, 1.0862, 0.2413, ...
+                              1.1465, 0.3017, 1.2069, 0.362, 1.2672, 0.4224, ...
+                              1.3275, 0.4827, 1.3879, 0.5431, 1.4482, 0.6034, ...
+                              1.5086, 0.6638, 1.5689, 0.7241, 1.6293, 0.7844, ...
+                              1.6896, 0.8448];
 
 end
 
@@ -190,8 +200,8 @@ function cfg = setMonitor(cfg)
     cfg.screen.monitorDistance = 40; % distance from the screen in cm
 
     if strcmpi(cfg.testingDevice, 'mri')
-        cfg.screen.monitorWidth = 25;
-        cfg.screen.monitorDistance = 95;
+        cfg.screen.monitorWidth = 69.8;
+        cfg.screen.monitorDistance = 170;
     end
 
 end
