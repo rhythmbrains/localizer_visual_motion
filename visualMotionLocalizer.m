@@ -32,8 +32,6 @@ try
 
     cfg = postInitializationSetup(cfg);
 
-    [el] = eyeTracker('Calibration', cfg);
-
     %     if isfield(cfg.design, 'localizer') && strcmpi(cfg.design.localizer, 'MT_MST')
     %         [cfg] = expDesignMtMst(cfg);
     %     else
