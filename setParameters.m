@@ -36,7 +36,7 @@ function [cfg] = setParameters()
 
     % MRI settings
     cfg = setMRI(cfg);
-    cfg.suffix.acquisition = '0p75mmEvTr2p18';
+%     cfg.suffix.acquisition = '0p75mmEvTr2p18';
 
     cfg.pacedByTriggers.do = false;
 
