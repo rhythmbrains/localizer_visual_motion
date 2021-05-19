@@ -47,7 +47,7 @@ try
     cfg = apertureTexture('init', cfg);
     cfg = dotTexture('init', cfg);
 
-    disp(cfg);
+    disp(cfg)
 
     % Show experiment instruction
     standByScreen(cfg);

@@ -15,13 +15,16 @@ function [cfg] = setParameters()
 
     %% Debug mode settings
 
-    cfg.debug.do = true; % To test the script out of the scanner, skip PTB sync
-    cfg.debug.smallWin = true; % To test on a part of the screen, change to 1
+    cfg.debug.do = false; % To test the script out of the scanner, skip PTB sync
+    cfg.debug.smallWin = false; % To test on a part of the screen, change to 1
     cfg.debug.transpWin = false; % To test with trasparent full size screen
 
     cfg.skipSyncTests = 0;
 
     cfg.verbose = 1;
+    
+        % it won't ask you about group or session
+    cfg.subject.askGrpSess = [0 0]; 
 
     %% Engine parameters
 
@@ -36,7 +39,6 @@ function [cfg] = setParameters()
 
     % MRI settings
     cfg = setMRI(cfg);
-%     cfg.suffix.acquisition = '0p75mmEvTr2p18';
 
     cfg.pacedByTriggers.do = false;
 
@@ -66,7 +68,7 @@ function [cfg] = setParameters()
     % IBI
     % block length = (cfg.eventDuration + cfg.ISI) * cfg.design.nbEventsPerBlock
 
-    cfg.timing.eventDuration = 0.59; % second
+    cfg.timing.eventDuration = 0.79; % second
 
     % Time between blocs in secs
     cfg.timing.IBI = 8;
