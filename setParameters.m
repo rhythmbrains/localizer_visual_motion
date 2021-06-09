@@ -19,7 +19,7 @@ function [cfg] = setParameters()
     cfg.debug.smallWin = false; % To test on a part of the screen, change to 1
     cfg.debug.transpWin = false; % To test with trasparent full size screen
 
-    cfg.skipSyncTests = 0;
+    cfg.skipSyncTests = 1;
 
     cfg.verbose = 1;
     
