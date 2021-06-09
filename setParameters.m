@@ -68,8 +68,12 @@ function [cfg] = setParameters()
     % IBI
     % block length = (cfg.eventDuration + cfg.ISI) * cfg.design.nbEventsPerBlock
 
-    cfg.timing.eventDuration = 1.07; % second
-
+    if IsWin
+        cfg.timing.eventDuration = 1.07; % second
+    elseif ismac
+        cfg.timing.eventDuration = 0.59; % second
+    end
+    
     % Time between blocs in secs
     cfg.timing.IBI = 8;
     % Time between events in secs
@@ -187,6 +191,9 @@ end
 
 function cfg = setMonitor(cfg)
 
+    % text size
+    cfg.text.size = 48;
+    
     % Monitor parameters for PTB
     cfg.color.white = [255 255 255];
     cfg.color.black = [0 0 0];
