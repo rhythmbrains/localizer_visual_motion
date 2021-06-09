@@ -17,13 +17,13 @@ function [cfg] = setParameters()
 
     cfg.debug.do = false; % To test the script out of the scanner, skip PTB sync
     cfg.debug.smallWin = false; % To test on a part of the screen, change to 1
-    cfg.debug.transpWin = false; % To test with trasparent full size screen
+    cfg.debug.transpWin = true; % To test with trasparent full size screen
 
-    cfg.skipSyncTests = 0;
+    cfg.skipSyncTests = 1;
 
     cfg.verbose = 1;
     
-        % it won't ask you about group or session
+    % it won't ask you about group or session
     cfg.subject.askGrpSess = [0 0]; 
 
     %% Engine parameters
@@ -54,7 +54,7 @@ function [cfg] = setParameters()
     % cfg.design.localizer = 'MT_MST';
 
     cfg.design.motionType = 'translation';
-    cfg.design.motionDirections = [0 90 180 270];
+    cfg.design.motionDirections = [0 180];
     cfg.design.names = {'static'; 'motion'};
 
     cfg.design.nbRepetitions = 6;
@@ -68,7 +68,7 @@ function [cfg] = setParameters()
     % IBI
     % block length = (cfg.eventDuration + cfg.ISI) * cfg.design.nbEventsPerBlock
 
-    cfg.timing.eventDuration = 0.79; % second
+    cfg.timing.eventDuration = 1.07; % second
 
     % Time between blocs in secs
     cfg.timing.IBI = 8;
