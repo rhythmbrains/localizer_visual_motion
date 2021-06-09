@@ -11,15 +11,15 @@ function [cfg] = setParameters()
     % setParamters.m file is
     % change that if you want the data to be saved somewhere else
     cfg.dir.output = fullfile( ...
-                              fileparts(mfilename('fullpath')),'output');
+                              fileparts(mfilename('fullpath')), '..', 'output');
 
     %% Debug mode settings
 
     cfg.debug.do = false; % To test the script out of the scanner, skip PTB sync
     cfg.debug.smallWin = false; % To test on a part of the screen, change to 1
-    cfg.debug.transpWin = true; % To test with trasparent full size screen
+    cfg.debug.transpWin = false; % To test with trasparent full size screen
 
-    cfg.skipSyncTests = 1;
+    cfg.skipSyncTests = 0;
 
     cfg.verbose = 1;
     
@@ -153,7 +153,7 @@ end
 
 function cfg = setKeyboards(cfg)
     cfg.keyboard.escapeKey = 'ESCAPE';
-    cfg.keyboard.responseKey = {'d', 'a', 'c', 'b'}; % dnze rgyb
+    cfg.keyboard.responseKey = {'a', 'c', 'b', 'd'}; 
     cfg.keyboard.keyboard = [];
     cfg.keyboard.responseBox = [];
 
