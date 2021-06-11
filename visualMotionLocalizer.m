@@ -162,7 +162,7 @@ try
 
     eyeTracker('Shutdown', cfg);
 
-    createJson(cfg, cfg);
+    createJson(cfg, 'func');
 
     farewellScreen(cfg);
 
